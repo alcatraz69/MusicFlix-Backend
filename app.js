@@ -1,9 +1,14 @@
-const express = require("express");
+import express from "express";
 const app = express();
-const { initialData } = require("./Database/Data");
-const Video = require("./Models/Video");
+// const { initialData } = require("./Database/Data");
+// const Video = require("./Models/Video");
 
-const { initializeDatabaseConnection } = require("./Database/DBconnection");
+import cors from "cors";
+import userRoutes from "./Routes/Auth.route.js";
+import videoRoute from "./Routes/Videos.route.js";
+app.use(express.json());
+
+import initializeDatabaseConnection from "./Database/DBconnection.js";
 
 initializeDatabaseConnection();
 
@@ -17,8 +22,10 @@ initializeDatabaseConnection();
 // };
 
 // populateData(initialData);
+app.use(cors());
 
-app.use(require("./Routes/Videos.route"));
+app.use(videoRoute);
+app.use("/user", userRoutes);
 
 app.use("/", (req, res) => {
   res.json("hello");
