@@ -1,7 +1,8 @@
-const mongoose = require("mongoose");
-const dotenv = require("dotenv");
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+
 dotenv.config({ path: "./config.env" });
-db = process.env.DATABASE;
+const db = process.env.DATABASE;
 
 const initializeDatabaseConnection = async () => {
   try {
@@ -16,4 +17,4 @@ const initializeDatabaseConnection = async () => {
   }
 };
 
-module.exports = { initializeDatabaseConnection };
+export default initializeDatabaseConnection;

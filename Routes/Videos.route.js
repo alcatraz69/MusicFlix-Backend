@@ -1,7 +1,7 @@
-const express = require("express");
+import express from "express";
 const router = express.Router();
 
-const Video = require("../Models/Video");
+import { Video } from "../Models/Video.js";
 
 router.get("/videos", async (req, res) => {
   try {
@@ -17,4 +17,4 @@ router.get("/videos", async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

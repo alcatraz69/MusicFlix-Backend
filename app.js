@@ -4,8 +4,9 @@ const app = express();
 // const Video = require("./Models/Video");
 
 import cors from "cors";
-import userRoutes from "./Routes/Auth.route.js";
+import authRoutes from "./Routes/Auth.route.js";
 import videoRoute from "./Routes/Videos.route.js";
+import likedVideoRoute from "./Routes/Likedvideo.route.js";
 app.use(express.json());
 
 import initializeDatabaseConnection from "./Database/DBconnection.js";
@@ -24,8 +25,9 @@ initializeDatabaseConnection();
 // populateData(initialData);
 app.use(cors());
 
+app.use(likedVideoRoute);
 app.use(videoRoute);
-app.use("/user", userRoutes);
+app.use("/auth", authRoutes);
 
 app.use("/", (req, res) => {
   res.json("hello");
