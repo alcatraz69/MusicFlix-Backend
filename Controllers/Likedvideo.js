@@ -38,7 +38,7 @@ export const getLikedVideos = async (req, res) => {
       res.status(200).json(likedVideosExist.videos);
       console.log("liked videos!");
     } else {
-      res.status(200).json("liked videos empty");
+      res.status(200).json({ msg: "liked videos empty" });
     }
   } catch (error) {
     console.log(error);
