@@ -2,10 +2,7 @@ import { Likedvideo } from "../Models/Likedvideos.js";
 
 export const addToLikedVideos = async (req, res) => {
   const user = req.user;
-  console.log(user.id);
-
   const video = req.body.video;
-  console.log(video);
 
   try {
     const likedVideosExist = await Likedvideo.findOne({ user: user.id });
@@ -28,7 +25,6 @@ export const addToLikedVideos = async (req, res) => {
 
 export const getLikedVideos = async (req, res) => {
   const user = req.user;
-  console.log(user.id);
 
   try {
     const likedVideosExist = await Likedvideo.findOne({ user: user.id })
@@ -47,9 +43,8 @@ export const getLikedVideos = async (req, res) => {
 
 export const removeLikedVideo = async (req, res) => {
   const user = req.user;
-  console.log(user.id);
   const video = req.body.video;
-  console.log(video);
+
   try {
     const likedVideosExist = await Likedvideo.findOne({ user: user.id });
     if (likedVideosExist.videos.some((item) => item == video.id)) {

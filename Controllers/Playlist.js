@@ -3,7 +3,6 @@ import { Playlist } from "../Models/Playlist.js";
 export const createPlaylist = async (req, res) => {
   const user = req.user;
   const { name } = req.body;
-  console.log(name);
 
   try {
     const newPlaylist = await Playlist.create({
@@ -11,7 +10,7 @@ export const createPlaylist = async (req, res) => {
       playlistName: name,
       videos: [],
     });
-    res.status(201).json({ msg: "created playlist", newPlaylist });
+    res.status(201).json({ success: true, newPlaylist });
   } catch (error) {
     console.log(error);
   }
@@ -19,7 +18,6 @@ export const createPlaylist = async (req, res) => {
 
 export const deletePlaylist = async (req, res) => {
   const { id } = req.body;
-  console.log(req.body);
 
   try {
     const userPlaylist = await Playlist.findByIdAndDelete({
@@ -51,9 +49,7 @@ export const getAllPlaylist = async (req, res) => {
 
 export const addVideoToPlaylist = async (req, res) => {
   const { id } = req.body;
-  console.log(id);
   const { playlistid } = req.params;
-  console.log(playlistid);
 
   try {
     const playlistExist = await Playlist.findById(playlistid);
@@ -67,9 +63,7 @@ export const addVideoToPlaylist = async (req, res) => {
 
 export const removeVideoFromPlaylist = async (req, res) => {
   const { id } = req.body;
-  console.log(id);
   const { playlistid } = req.params;
-  console.log(playlistid);
 
   try {
     const playlistExist = await Playlist.findById(playlistid);
